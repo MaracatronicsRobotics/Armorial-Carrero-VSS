@@ -280,23 +280,23 @@ void ArmorialVisionUpdater::processGeometryData(const fira_message::Field &geome
 
     // Update to system
     // Change this later!
-    double areaRadius = 150.0;
-    double centerRadius = 200.0;
-    double areaLength = 700.0;
-    double areaWidth = 150.0;
-    double goalDepth = 100.0;
+    double areaRadius = 0.15;
+    double centerRadius = 0.2;
+    double areaLength = 0.7;
+    double areaWidth = 0.15;
+    double goalDepth = 0.1;
     _sensor->setFieldCenter(Position(true, 0.0, 0.0, 0.0));
-    _sensor->setFieldTopRightCorner(Position(true, (field.length()/2.0)*MM2METER, (field.width()/2.0)*MM2METER, 0.0));
-    _sensor->setFieldTopLeftCorner(Position(true, (-field.length()/2.0)*MM2METER, (field.width()/2.0)*MM2METER, 0.0));
-    _sensor->setFieldBottomLeftCorner(Position(true, (-field.length()/2.0)*MM2METER, (-field.width()/2.0)*MM2METER, 0.0));
-    _sensor->setFieldBottomRightCorner(Position(true, (field.length()/2.0)*MM2METER, (-field.width()/2.0)*MM2METER, 0.0));
-    _sensor->setRightPenaltyMark(Position(true, (field.length()/2.0 - areaRadius)*MM2METER, 0.0, 0.0));
-    _sensor->setLeftPenaltyMark(Position(true, (-field.length()/2.0 + areaRadius)*MM2METER, 0.0, 0.0));
-    _sensor->setLeftGoalPosts(Position(true, (-field.length()/2.0)*MM2METER, (-field.goal_width()/2.0)*MM2METER, 0.0), Position(true, (-field.length()/2.0)*MM2METER, (field.goal_width()/2.0)*MM2METER, 0.0));
-    _sensor->setRightGoalPosts(Position(true, (field.length()/2.0)*MM2METER, (field.goal_width()/2.0)*MM2METER, 0.0), Position(true, (field.length()/2.0)*MM2METER, (-field.goal_width()/2.0)*MM2METER, 0.0));
-    _sensor->setFieldCenterRadius(centerRadius*MM2METER);
-    _sensor->setGoalArea(areaLength*MM2METER, areaWidth*MM2METER, areaRadius*MM2METER);
-    _sensor->setGoalDepth(goalDepth*MM2METER);
+    _sensor->setFieldTopRightCorner(Position(true, (field.length()/2.0), (field.width()/2.0), 0.0));
+    _sensor->setFieldTopLeftCorner(Position(true, (-field.length()/2.0), (field.width()/2.0), 0.0));
+    _sensor->setFieldBottomLeftCorner(Position(true, (-field.length()/2.0), (-field.width()/2.0), 0.0));
+    _sensor->setFieldBottomRightCorner(Position(true, (field.length()/2.0), (-field.width()/2.0), 0.0));
+    _sensor->setRightPenaltyMark(Position(true, (field.length()/2.0 - areaRadius), 0.0, 0.0));
+    _sensor->setLeftPenaltyMark(Position(true, (-field.length()/2.0 + areaRadius), 0.0, 0.0));
+    _sensor->setLeftGoalPosts(Position(true, (-field.length()/2.0), (-field.goal_width()/2.0), 0.0), Position(true, (-field.length()/2.0), (field.goal_width()/2.0), 0.0));
+    _sensor->setRightGoalPosts(Position(true, (field.length()/2.0), (field.goal_width()/2.0), 0.0), Position(true, (field.length()/2.0), (-field.goal_width()/2.0), 0.0));
+    _sensor->setFieldCenterRadius(centerRadius);
+    _sensor->setGoalArea(areaLength, areaWidth, areaRadius);
+    _sensor->setGoalDepth(goalDepth);
 
 
     if(_debugGeometry) {
