@@ -35,7 +35,7 @@ int main(int argc, char** argv) {
     FieldTypes::FieldType fieldType = FieldTypes::VISION;
     FieldAreas::FieldArea fieldLimit = FieldAreas::ALL;
     bool debugDetection = false;
-    bool debugGeometry = true;
+    bool debugGeometry = false;
     /*******************************************/
     /*********** EXIT HANDLER (CTRL+C) *********/
     /*******************************************/
