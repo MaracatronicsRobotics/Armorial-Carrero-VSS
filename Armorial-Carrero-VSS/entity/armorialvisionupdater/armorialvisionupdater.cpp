@@ -285,15 +285,19 @@ void ArmorialVisionUpdater::processGeometryData(const fira_message::Field &geome
     double areaLength = 0.7;
     double areaWidth = 0.15;
     double goalDepth = 0.1;
+    double fieldLength = 1.3;
+    double fieldWidth = 1.5;
+    double goalWidth = 0.1;
+
     _sensor->setFieldCenter(Position(true, 0.0, 0.0, 0.0));
-    _sensor->setFieldTopRightCorner(Position(true, (field.length()/2.0), (field.width()/2.0), 0.0));
-    _sensor->setFieldTopLeftCorner(Position(true, (-field.length()/2.0), (field.width()/2.0), 0.0));
-    _sensor->setFieldBottomLeftCorner(Position(true, (-field.length()/2.0), (-field.width()/2.0), 0.0));
-    _sensor->setFieldBottomRightCorner(Position(true, (field.length()/2.0), (-field.width()/2.0), 0.0));
-    _sensor->setRightPenaltyMark(Position(true, (field.length()/2.0 - areaRadius), 0.0, 0.0));
-    _sensor->setLeftPenaltyMark(Position(true, (-field.length()/2.0 + areaRadius), 0.0, 0.0));
-    _sensor->setLeftGoalPosts(Position(true, (-field.length()/2.0), (-field.goal_width()/2.0), 0.0), Position(true, (-field.length()/2.0), (field.goal_width()/2.0), 0.0));
-    _sensor->setRightGoalPosts(Position(true, (field.length()/2.0), (field.goal_width()/2.0), 0.0), Position(true, (field.length()/2.0), (-field.goal_width()/2.0), 0.0));
+    _sensor->setFieldTopRightCorner(Position(true, (fieldLength/2.0), (fieldWidth/2.0), 0.0));
+    _sensor->setFieldTopLeftCorner(Position(true, (-fieldLength/2.0), (fieldWidth/2.0), 0.0));
+    _sensor->setFieldBottomLeftCorner(Position(true, (-fieldLength/2.0), (-fieldWidth/2.0), 0.0));
+    _sensor->setFieldBottomRightCorner(Position(true, (fieldLength/2.0), (-fieldWidth/2.0), 0.0));
+    _sensor->setRightPenaltyMark(Position(true, (fieldLength/2.0 - areaRadius), 0.0, 0.0));
+    _sensor->setLeftPenaltyMark(Position(true, (-fieldLength/2.0 + areaRadius), 0.0, 0.0));
+    _sensor->setLeftGoalPosts(Position(true, (-fieldLength/2.0), (-goalWidth/2.0), 0.0), Position(true, (-fieldLength/2.0), (goalWidth/2.0), 0.0));
+    _sensor->setRightGoalPosts(Position(true, (fieldLength/2.0), (goalWidth/2.0), 0.0), Position(true, (fieldLength/2.0), (-goalWidth/2.0), 0.0));
     _sensor->setFieldCenterRadius(centerRadius);
     _sensor->setGoalArea(areaLength, areaWidth, areaRadius);
     _sensor->setGoalDepth(goalDepth);
@@ -302,9 +306,9 @@ void ArmorialVisionUpdater::processGeometryData(const fira_message::Field &geome
     if(_debugGeometry) {
         printf("[Geometry Data]\n");
         printf("Field Dimensions:\n");
-        printf("  -field_length=%lf (mm)\n",field.length());
-        printf("  -field_width=%lf (mm)\n",field.width());
-        printf("  -goal_width=%lf (mm)\n",field.goal_width());
-        printf("  -goal_depth=%lf (mm)\n",field.goal_depth());
+        printf("  -field_length=%lf (mm)\n",fieldLength);
+        printf("  -field_width=%lf (mm)\n",fieldWidth);
+        printf("  -goal_width=%lf (mm)\n",goalWidth);
+        printf("  -goal_depth=%lf (mm)\n",goalDepth);
     }
 }

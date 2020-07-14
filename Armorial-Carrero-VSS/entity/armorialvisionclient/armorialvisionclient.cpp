@@ -93,6 +93,9 @@ void ArmorialVisionClient::loop() {
             _hasDetectionUpdate = true;
         }
 
+        // firaSim doesn't send geometry data, so force it.
+        _hasGeometryUpdate = true;
+
         // Check if packet contains geometry data
         if(packet.has_field()) {
 
