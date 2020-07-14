@@ -34,7 +34,7 @@ int main(int argc, char** argv) {
     int visionSystemPort = 10002;
     FieldTypes::FieldType fieldType = FieldTypes::VISION;
     FieldAreas::FieldArea fieldLimit = FieldAreas::ALL;
-    bool debugDetection = true;
+    bool debugDetection = false;
     bool debugGeometry = false;
     /*******************************************/
     /*********** EXIT HANDLER (CTRL+C) *********/
