@@ -287,7 +287,7 @@ void ArmorialVisionUpdater::processGeometryData(const fira_message::Field &geome
     double goalDepth = 0.1;
     double fieldLength = 1.3;
     double fieldWidth = 1.5;
-    double goalWidth = 0.1;
+    double goalWidth = 0.4;
 
     _sensor->setFieldCenter(Position(true, 0.0, 0.0, 0.0));
     _sensor->setFieldTopRightCorner(Position(true, (fieldLength/2.0), (fieldWidth/2.0), 0.0));
@@ -301,7 +301,6 @@ void ArmorialVisionUpdater::processGeometryData(const fira_message::Field &geome
     _sensor->setFieldCenterRadius(centerRadius);
     _sensor->setGoalArea(areaLength, areaWidth, areaRadius);
     _sensor->setGoalDepth(goalDepth);
-
 
     if(_debugGeometry) {
         printf("[Geometry Data]\n");
