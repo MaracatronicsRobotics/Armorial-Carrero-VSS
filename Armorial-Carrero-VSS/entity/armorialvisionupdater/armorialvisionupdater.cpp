@@ -285,8 +285,8 @@ void ArmorialVisionUpdater::processGeometryData(const fira_message::Field &geome
     double areaLength = 0.7;
     double areaWidth = 0.15;
     double goalDepth = 0.1;
-    double fieldLength = 1.3;
-    double fieldWidth = 1.5;
+    double fieldLength = 1.5;
+    double fieldWidth = 1.3;
     double goalWidth = 0.4;
 
     _sensor->setFieldCenter(Position(true, 0.0, 0.0, 0.0));
