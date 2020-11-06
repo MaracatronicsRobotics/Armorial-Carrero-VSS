@@ -31,7 +31,6 @@
 int main(int argc, char** argv) {
 
     QApplication app(argc, argv);
-    int visionSystemPort = 10002;
     FieldTypes::FieldType fieldType = FieldTypes::VISION;
     FieldAreas::FieldArea fieldLimit = FieldAreas::ALL;
     bool debugDetection = false;
@@ -48,8 +47,42 @@ int main(int argc, char** argv) {
     const bool enableLossFilter = true;
     const bool enableKalmanFilter = true;
     const bool enableNoiseFilter = true;
+    /*
+     * Parsing info
+    */
+
+    // Command line parser, get arguments
+    QCommandLineParser parser;
+    parser.setApplicationDescription("Carrrero VSS application help.");
+    parser.addHelpOption();
+    parser.addVersionOption();
+    parser.addPositionalArgument("visionAddress", "Sets the address that the application will listen to. (default is 224.5.23.2)");
+    parser.addPositionalArgument("visionPort", "Sets the port that the application will listen to. (default is 10002)");
+    parser.process(app);
+    QStringList args = parser.positionalArguments();
+
+    int visionSystemPort = 10002;
+    std::string visionSystemAddress = "224.5.23.2";
+
+    if(args.size() >= 1){
+        std::string visionAddress = args.at(0).toStdString();
+        visionSystemAddress = visionAddress;
+    }
+
+    if(args.size() >= 2){
+        int port = args.at(1).toInt();
+
+        if(port < 1 || port > 65535){
+            std::cout << "[ERROR] Invalid port: " << port << std::endl;
+            return EXIT_FAILURE;
+        }
+
+        visionSystemPort = port;
+    }
+
+
     // Create modules
-    ArmorialVisionClient eyeClient(visionSystemPort);
+    ArmorialVisionClient eyeClient(visionSystemAddress, visionSystemPort);
     ArmorialVisionUpdater eyeUpdater(&eyeClient, fieldLimit, enableLossFilter, enableKalmanFilter, enableNoiseFilter, debugDetection, debugGeometry);
 
     // Start modules
