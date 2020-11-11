@@ -19,7 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ***/
 
-#include <QApplication>
+#include <QCoreApplication>
 #include <iostream>
 
 #include <entity/armorialvisionclient/armorialvisionclient.h>
@@ -30,7 +30,7 @@
 
 int main(int argc, char** argv) {
 
-    QApplication app(argc, argv);
+    QCoreApplication app(argc, argv);
     FieldTypes::FieldType fieldType = FieldTypes::VISION;
     FieldAreas::FieldArea fieldLimit = FieldAreas::ALL;
     bool debugDetection = false;
